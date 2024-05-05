@@ -1,62 +1,50 @@
-const form = document.querySelector("form"),
-fileInput = document.querySelector(".file-input"),
-progressArea = document.querySelector(".progress-area"),
-uploadedArea = document.querySelector(".uploaded-area");
+ const inputs = document.querySelectorAll("input"),
+  button = document.querySelector("button");
 
-form.addEventListener("click", () =>{
-  fileInput.click();
+// iterate over all inputs
+inputs.forEach((input, index1) => {
+  input.addEventListener("keyup", (e) => {
+    // This code gets the current input element and stores it in the currentInput variable
+    // This code gets the next sibling element of the current input element and stores it in the nextInput variable
+    // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
+    const currentInput = input,
+      nextInput = input.nextElementSibling,
+      prevInput = input.previousElementSibling;
+
+    // if the value has more than one character then clear it
+    if (currentInput.value.length > 1) {
+      currentInput.value = "";
+      return;
+    }
+    // if the next input is disabled and the current value is not empty
+    //  enable the next input and focus on it
+    if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+      nextInput.removeAttribute("disabled");
+      nextInput.focus();
+    }
+
+    // if the backspace key is pressed
+    if (e.key === "Backspace") {
+      // iterate over all inputs again
+      inputs.forEach((input, index2) => {
+        // if the index1 of the current input is less than or equal to the index2 of the input in the outer loop
+        // and the previous element exists, set the disabled attribute on the input and focus on the previous element
+        if (index1 <= index2 && prevInput) {
+          input.setAttribute("disabled", true);
+          input.value = "";
+          prevInput.focus();
+        }
+      });
+    }
+    //if the fourth input( which index number is 3) is not empty and has not disable attribute then
+    //add active class if not then remove the active class.
+    if (!inputs[3].disabled && inputs[3].value !== "") {
+      button.classList.add("active");
+      return;
+    }
+    button.classList.remove("active");
+  });
 });
 
-fileInput.onchange = ({target})=>{
-  let file = target.files[0];
-  if(file){
-    let fileName = file.name;
-    if(fileName.length >= 12){
-      let splitName = fileName.split('.');
-      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
-    }
-    uploadFile(fileName);
-  }
-}
-
-function uploadFile(name){
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "php/upload.php");
-  xhr.upload.addEventListener("progress", ({loaded, total}) =>{
-    let fileLoaded = Math.floor((loaded / total) * 100);
-    let fileTotal = Math.floor(total / 1000);
-    let fileSize;
-    (fileTotal < 1024) ? fileSize = fileTotal + " KB" : fileSize = (loaded / (1024*1024)).toFixed(2) + " MB";
-    let progressHTML = `<li class="row">
-                          <i class="fas fa-file-alt"></i>
-                          <div class="content">
-                            <div class="details">
-                              <span class="name">${name} • Uploading</span>
-                              <span class="percent">${fileLoaded}%</span>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress" style="width: ${fileLoaded}%"></div>
-                            </div>
-                          </div>
-                        </li>`;
-    uploadedArea.classList.add("onprogress");
-    progressArea.innerHTML = progressHTML;
-    if(loaded == total){
-      progressArea.innerHTML = "";
-      let uploadedHTML = `<li class="row">
-                            <div class="content upload">
-                              <i class="fas fa-file-alt"></i>
-                              <div class="details">
-                                <span class="name">${name} • Uploaded</span>
-                                <span class="size">${fileSize}</span>
-                              </div>
-                            </div>
-                            <i class="fas fa-check"></i>
-                          </li>`;
-      uploadedArea.classList.remove("onprogress");
-      uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
-    }
-  });
-  let data = new FormData(form);
-  xhr.send(data);
-}
+//focus the first input which index is 0 on window load
+window.addEventListener("load", () => inputs[0].focus());
