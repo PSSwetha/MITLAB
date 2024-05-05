@@ -1,8 +1,6 @@
 Name: PSSwetha
 Email: psswetha6@gmail.com
 
-created file uploader using html,css and javascript
-in thhis file uploader fisrt click on html file 
-then click on the file upload option
-you can upload any file your wish
-then file will be uploaded
+created my profile using html,css and javascript
+my profile is created by my name
+and also mention my social media follower instagram,facebook etc
