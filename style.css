@@ -1,82 +1,55 @@
-/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
 body {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: hwb(51 25% 4%);
-}
-:where(.container, form, .input-field, header) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.container {
-  background: hsla(0, 0%, 100%, 0.404);
-  padding: 30px 65px;
-  border-radius: 12px;
-  row-gap: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.container header {
-  height: 75px;
-  width: 75px;
-  background: hsl(59, 89%, 60%);
-  color: #fff;
-  font-size: 3.5rem;
-  border-radius: 50%;
-}
-.container h4 {
-  font-size: 1.25rem;
-  color: #12ce0b;
-  font-weight: 500;
-}
-form .input-field {
-  flex-direction: row;
-  column-gap: 10px;
-}
-.input-field input {
-  height: 55px;
-  width: 55px;
-  border-radius: 6px;
-  outline: none;
-  font-size: 1.135rem;
-  text-align: center;
-  border: 1px solid #dddddd70;
-}
-.input-field input:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-}
-.input-field input::-webkit-inner-spin-button,
-.input-field input::-webkit-outer-spin-button {
-  display: none;
-}
-form button {
-  margin-top: 20px;
-  width: 90%;
-  color: #801515;
-  font-size: 2rem;
-  border: none;
-  padding: 9px 0;
-  cursor: pointer;
-  border-radius: 6px;
-  pointer-events: none;
-  background: #6e93f7;
-  transition: all 0.2s ease;
-}
-form button.active {
-  background: #40f4eb25;
-  pointer-events: auto;
-}
-form button:hover {
-  background: #f10e9a;
-}
-
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  
+  form {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
